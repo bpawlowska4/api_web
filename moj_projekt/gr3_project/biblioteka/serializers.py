@@ -65,11 +65,12 @@ class BookSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
     
     def validate_title(self, value):
-        if not value.istitle():
+        if not value[0].isupper():
             raise serializers.ValidationError(
                 "Tytuł książki powinien rozpoczynać się wielką literą!"
             )
         return value
+
     
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
